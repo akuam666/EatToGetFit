@@ -1,0 +1,111 @@
+﻿@page
+@model FoodProject.Pages.MyRefeicoes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Refeicao[0].NomeRefeição)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Refeicao[0].RefeicaoData)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Refeicao[0].User)
+            </th>*@
+            <th>
+                Alimentos
+            </th>
+            <th>
+                Gramas
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@*@foreach (var item in Model.Refeicao) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeRefeição)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RefeicaoData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>*@
+
+
+        
+    @foreach (var item in Model.Refeicao)
+        {
+           
+           <tr>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.NomeRefeição)
+                 </td>
+                  <td>
+                @Html.DisplayFor(modelItem => item.RefeicaoData)
+                </td>
+                                    
+           
+                <td>
+                    @*@{
+                        string actions = "";
+                        actions = string.Join(" ", item.AlimentoRefeicao.Select(m => m.Alimentos.Name)) ;
+                        <span>@actions</span><br/>
+                    }*@
+                    @foreach (var b in item.AlimentoRefeicao)
+                    {
+                        
+                        //@Html.DisplayFor(modelItem => a.Gramas.ToString());
+                        string valGramas = "";
+                        valGramas = string.Join(" ", b.Alimentos.Name.ToString());
+                        <span>@valGramas</span><br/>
+                            
+                    }
+
+                </td>
+          
+                 <td>
+
+                    @foreach (var a in item.AlimentoRefeicao)
+                    {
+                        
+                        //@Html.DisplayFor(modelItem => a.Gramas.ToString());
+                        string valGramas = "";
+                        valGramas = string.Join(" ", a.Gramas.ToString());
+                        <span>@valGramas</span><br/>
+                            
+                    }
+
+                 </td>
+            
+
+           
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.Id">Select</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+}
+    </tbody>
+</table>

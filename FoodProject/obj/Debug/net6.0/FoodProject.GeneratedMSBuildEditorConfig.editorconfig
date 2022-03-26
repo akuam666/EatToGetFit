@@ -1,0 +1,132 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FoodProject
+build_property.RootNamespace = FoodProject
+build_property.ProjectDir = C:\Users\Bernardo\source\repos\FoodProject\FoodProject\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Bernardo\source\repos\FoodProject\FoodProject
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAcao/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBY2FvXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAcao/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBY2FvXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAcao/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBY2FvXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAcao/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBY2FvXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAcao/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBY2FvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAlimentos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBbGltZW50b3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAlimentos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBbGltZW50b3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAlimentos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBbGltZW50b3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAlimentos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBbGltZW50b3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyAlimentos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBbGltZW50b3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyCategorias/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlDYXRlZ29yaWFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyCategorias/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlDYXRlZ29yaWFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyCategorias/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlDYXRlZ29yaWFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyCategorias/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlDYXRlZ29yaWFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyCategorias/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlDYXRlZ29yaWFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyRefeicoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlSZWZlaWNvZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyRefeicoes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlSZWZlaWNvZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyRefeicoes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlSZWZlaWNvZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyRefeicoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlSZWZlaWNvZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/MyRefeicoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlSZWZlaWNvZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bernardo/source/repos/FoodProject/FoodProject/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-xvn9twyaqs
