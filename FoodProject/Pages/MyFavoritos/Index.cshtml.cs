@@ -10,7 +10,7 @@ using FoodProject.Data.Ententies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-namespace FoodProject.Pages.MyRefeicoes
+namespace FoodProject.Pages.MyFavoritos
 {
     [Authorize]
     public class IndexModel : PageModel
@@ -24,26 +24,14 @@ namespace FoodProject.Pages.MyRefeicoes
             _userManager = userManager;
         }
 
-        public IList<Refeicao> Refeicao { get;set; }
+        public IList<Favoritos> Favoritos { get;set; }
 
         public async Task OnGetAsync()
         {
-            Refeicao = await _context.Refeicaos.
-                Where(u => u.User.Id == _userManager.GetUserId(User)).Include(c => c.User)
-               //.Include(c => c.AlimentoRefeicao)
-               //.ThenInclude(a => a.Gramas)
-               .Include(c => c.AlimentoRefeicao)
-               .ThenInclude(a => a.Alimentos)
-               //.Include(r => r.User)
-
-
-              
-               .ToListAsync();
-
-
-
-            //Refeicao = await _context.Refeicaos
-            //    .Include(r => r.User).ToListAsync();
+            Favoritos = await _context.Favoritos
+                 .Where(u => u.User.Id == _userManager.GetUserId(User)).Include(c => c.User)
+                .Include(f => f.Alimentos)
+                .Include(f => f.User).ToListAsync();
         }
     }
 }

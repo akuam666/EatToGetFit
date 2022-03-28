@@ -24,11 +24,11 @@
                 <input asp-for="Refeicao.RefeicaoData" class="form-control" />
                 <span asp-validation-for="Refeicao.RefeicaoData" class="text-danger"></span>
             </div>
-            <div class="form-group">
+        @*    <div class="form-group">
                 <label asp-for="Refeicao.UserId" class="control-label"></label>
                 <select asp-for="Refeicao.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
                 <span asp-validation-for="Refeicao.UserId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                  <div class="form-group">
                     @{ for (int i = 0; i < Model.AlimentoList.Count; i++)
@@ -40,8 +40,27 @@
                             <br />
                         }
                     }
-                </div>
-            <div class="form-group">
+               </div>      
+
+        
+
+
+                <div class="form-group">
+                <label asp-for="Refeicao.RefeicaoData" class="control-label"></label>
+
+                @foreach (var item in Model.Refeicao.AlimentoRefeicao)
+                {
+                    <tr>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gramas)
+                        </td>
+                    </tr>
+                }
+        
+
+
+
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

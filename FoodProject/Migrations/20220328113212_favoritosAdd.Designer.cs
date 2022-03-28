@@ -4,6 +4,7 @@ using FoodProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220328113212_favoritosAdd")]
+    partial class favoritosAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,29 +117,6 @@ namespace FoodProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("FoodProject.Data.Ententies.Favoritos", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<int>("AlimentoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("AlimentoId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Favoritos");
                 });
 
             modelBuilder.Entity("FoodProject.Data.Ententies.Refeicao", b =>
@@ -434,23 +413,6 @@ namespace FoodProject.Migrations
                     b.Navigation("Alimentos");
 
                     b.Navigation("Refeicaos");
-                });
-
-            modelBuilder.Entity("FoodProject.Data.Ententies.Favoritos", b =>
-                {
-                    b.HasOne("FoodProject.Data.Enteties.Alimento", "Alimentos")
-                        .WithMany()
-                        .HasForeignKey("AlimentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Alimentos");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FoodProject.Data.Ententies.Refeicao", b =>

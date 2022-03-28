@@ -3,6 +3,7 @@ using FoodProject.Data.Enteties;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace FoodProject.Data
 {
     public class ApplicationDbContext : IdentityDbContext
@@ -57,5 +58,10 @@ namespace FoodProject.Data
             //}
 
         }
+
+
+        public DbSet<FoodProject.Data.Ententies.Favoritos> Favoritos { get; set; }
+
+
     }
 }

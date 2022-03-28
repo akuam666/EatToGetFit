@@ -9,16 +9,23 @@ using FoodProject.Data;
 using FoodProject.Data.Ententies;
 using System.ComponentModel.DataAnnotations;
 using FoodProject.Data.Enteties;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodProject.Pages.MyRefeicoes
 {
+
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly FoodProject.Data.ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public CreateModel(FoodProject.Data.ApplicationDbContext context)
+        public CreateModel(FoodProject.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
 
@@ -29,9 +36,26 @@ namespace FoodProject.Pages.MyRefeicoes
         [Display(Name = "Add a New Alimento")]
         public String NewAlimento { get; set; }
 
+        //public Refeicao Refeicao { get; set; }
+
 
         public IActionResult OnGet()
         {
+
+            //var userId = _userManager.GetUserId(User);
+            //ViewData["UserId"] = new SelectList(_userManager.Users, "Id", "Email");
+        
+
+
+            //var refeicao = new Refeicao()
+            //{
+
+            //    UserId = userId
+
+            //};
+            //Refeicao = _context.Refeicaos
+            //   .Include(t => t.User);
+
 
             AlimentoList = _context.Alimentos.ToList<Alimento>()
                .Select(m => new SelectListItem { Text = m.Name, Value = m.Id.ToString() })
@@ -40,8 +64,7 @@ namespace FoodProject.Pages.MyRefeicoes
             return Page();
 
 
-            //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            //    return Page();
+           
         }
 
         [BindProperty]
@@ -54,6 +77,12 @@ namespace FoodProject.Pages.MyRefeicoes
             {
                 return Page();
             }
+
+
+            var userId = _userManager.GetUserId(User);
+            Refeicao.UserId = userId;
+
+
             IList<AlimentoRefeicao> AlimentoRefeicaos = new List<AlimentoRefeicao>();
 
             foreach (SelectListItem acao in AlimentoList)

@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FoodProject.Data;
-using FoodProject.Data.Enteties;
+using FoodProject.Data.Ententies;
 
-namespace FoodProject.Pages.MyAlimentos
+namespace FoodProject.Pages.MyFavoritos
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace FoodProject.Pages.MyAlimentos
         }
 
         [BindProperty]
-        public Alimento Alimento { get; set; }
+        public Favoritos Favoritos { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,13 +29,11 @@ namespace FoodProject.Pages.MyAlimentos
                 return NotFound();
             }
 
-            Alimento = await _context.Alimentos
-                .Include(a => a.Categoria)
-                .Include(a => a.AlimentoAcaos) // tabela intermedia
-                .ThenInclude(s => s.Acaos)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Favoritos = await _context.Favoritos
+                .Include(f => f.Alimentos)
+                .Include(f => f.User).FirstOrDefaultAsync(m => m.id == id);
 
-            if (Alimento == null)
+            if (Favoritos == null)
             {
                 return NotFound();
             }
@@ -49,11 +47,11 @@ namespace FoodProject.Pages.MyAlimentos
                 return NotFound();
             }
 
-            Alimento = await _context.Alimentos.FindAsync(id);
+            Favoritos = await _context.Favoritos.FindAsync(id);
 
-            if (Alimento != null)
+            if (Favoritos != null)
             {
-                _context.Alimentos.Remove(Alimento);
+                _context.Favoritos.Remove(Favoritos);
                 await _context.SaveChangesAsync();
             }
 

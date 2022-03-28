@@ -43,6 +43,7 @@ namespace FoodProject.Pages.MyRefeicoes
             Refeicao = await _context.Refeicaos
                 //.Include(a => a.Categoria)
                 .Include(b => b.AlimentoRefeicao)
+                .ThenInclude(c => c.Alimentos)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
 
@@ -53,20 +54,13 @@ namespace FoodProject.Pages.MyRefeicoes
                 Selected = Refeicao.AlimentoRefeicao.Any(S => S.AlimentoId == m.Id) ? true : false
             }).ToList<SelectListItem>();
 
-            //if (Alimento == null)
-            //{
-            //    return NotFound();
-            //}
-
-
-            //Refeicao = await _context.Refeicaos
-            //    .Include(r => r.User).FirstOrDefaultAsync(m => m.Id == id);
+       
 
             if (Refeicao == null)
             {
                 return NotFound();
             }
-           //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+           
            return Page();
         }
 
