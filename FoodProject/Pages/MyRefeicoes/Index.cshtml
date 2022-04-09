@@ -5,28 +5,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>My Meals</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Add meal</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Refeicao[0].NomeRefeição)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Refeicao[0].RefeicaoData)
+               Start
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Refeicao[0].User)
-            </th>*@
+             <th>
+                End
+            </th>           
             <th>
-                Alimentos
+                Foods
             </th>
             <th>
-                Gramas
+                Portion
             </th>
             <th></th>
         </tr>
@@ -44,8 +44,11 @@
                     @Html.DisplayFor(modelItem => item.NomeRefeição)
                  </td>
                   <td>
-                @Html.DisplayFor(modelItem => item.RefeicaoData)
-                </td>          
+                @Html.DisplayFor(modelItem => item.HoraInicio)
+                </td> 
+                    <td>
+                @Html.DisplayFor(modelItem => item.HoraFim)
+                </td>  
                 <td>                
                     @foreach (var b in item.AlimentoRefeicao)
                     {
@@ -64,9 +67,8 @@
                     }
                  </td>          
                 <td>
-                    <a asp-page="./Index" asp-route-id="@item.Id">Select</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                   
+                    
                     <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>

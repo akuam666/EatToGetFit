@@ -1,14 +1,14 @@
 ﻿@page
-@model FoodProject.Pages.MyFavoritos.IndexModel
+@model FoodProject.Pages.MyBlacklist.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Favourite Foods</h1>
+<h1>Least-liked Foods</h1>
 
 <p>
-    <a asp-page="Create">Add food to Favourites</a>
+    <a asp-page="Create">Add food to Blacklist</a>
 </p>
 <table class="table">
     <thead>
@@ -16,24 +16,25 @@
             <th>
                 Food
             </th>
+            
             <th>
                 Added at
-            </th>     
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Favoritos) {
+@foreach (var item in Model.Blacklist) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Alimentos.Name)
             </td>
-        
+         
             <td>
-                @Html.DisplayFor(modelItem => item.DiaFavoritos)
+                @Html.DisplayFor(modelItem => item.DiaBlacklist)
             </td>
             <td>
-         
+                
                 <a asp-page="./Delete" asp-route-id="@item.id">Delete</a>
             </td>
         </tr>

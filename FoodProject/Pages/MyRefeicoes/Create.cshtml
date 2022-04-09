@@ -4,13 +4,18 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+.foods {
+    columns :125px 3;
+}
+</style>
 
-<h1>Create</h1>
+<h1>Add Meal</h1>
 
-<h4>Refeicao</h4>
+<h4>Meal</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -19,25 +24,23 @@
                 <span asp-validation-for="Refeicao.NomeRefeição" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Refeicao.RefeicaoData" class="control-label"></label>
-                <input asp-for="Refeicao.RefeicaoData" class="form-control" />
-                <span asp-validation-for="Refeicao.RefeicaoData" class="text-danger"></span>
+                <label asp-for="Refeicao.HoraInicio" class="control-label"></label>
+                <input asp-for="Refeicao.HoraInicio" class="form-control" />
+                <span asp-validation-for="Refeicao.HoraInicio" class="text-danger"></span>
             </div>
-          @*  <div class="form-group">
-                <label asp-for="Refeicao.UserId" class="control-label"></label>
-                <select asp-for="Refeicao.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>*@
-@*
-             <div class="form-group">
-                <label asp-for="Refeicao.UserId" class="control-label"></label>
-                <input asp-for="Refeicao.UserId" class ="form-control" />               
-                <span asp-validation-for="Refeicao.UserId" class="text-danger"></span>
-            </div>*@
+              <div class="form-group">
+                <label asp-for="Refeicao.HoraFim" class="control-label"></label>
+                <input asp-for="Refeicao.HoraFim" class="form-control" />
+                <span asp-validation-for="Refeicao.HoraFim" class="text-danger"></span>
+            </div>
 
+   
 
-             <div class="form-group">
+             <div class="foods">
                 @{ for (int i = 0; i < Model.AlimentoList.Count; i++)
-                    {
+                    {   
+                        
+
                         <input asp-for="@Model.AlimentoList[i].Value" type="hidden" />
                         {
                             <input asp-for="@Model.AlimentoList[i].Selected" /> @Model.AlimentoList[i].Text
@@ -53,6 +56,10 @@
         </form>
     </div>
 </div>
+
+
+
+
 
 <div>
     <a asp-page="Index">Back to List</a>

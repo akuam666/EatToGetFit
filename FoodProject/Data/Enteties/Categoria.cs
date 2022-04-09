@@ -6,7 +6,10 @@ namespace FoodProject.Data.Ententies
     {
 
         public int Id { get; set; }
-        
+
+
+        [Required]
+        [Display(Name = "Category")]
         public string NomeCategoria { get; set; }
     }
 }

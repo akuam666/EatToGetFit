@@ -270,3 +270,4 @@ C:\Users\Bernardo\source\repos\FoodProject\FoodProject\obj\Debug\net6.0\refint\F
 C:\Users\Bernardo\source\repos\FoodProject\FoodProject\obj\Debug\net6.0\FoodProject.pdb
 C:\Users\Bernardo\source\repos\FoodProject\FoodProject\obj\Debug\net6.0\FoodProject.genruntimeconfig.cache
 C:\Users\Bernardo\source\repos\FoodProject\FoodProject\obj\Debug\net6.0\ref\FoodProject.dll
+C:\Users\Bernardo\source\repos\FoodProject\FoodProject\bin\Debug\net6.0\FluentAssertions.dll

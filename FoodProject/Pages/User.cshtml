@@ -1,0 +1,117 @@
+﻿@page
+@model FoodProject.Pages.UserModel
+@{
+}
+
+
+            <h5>Current Fasting (HH:MM):</h5>
+            <p>
+                
+        @foreach (var meals in Model.fast)
+        {
+        <tr>
+        <td>
+        @Html.DisplayFor(modelItem => meals.Hours):@Html.DisplayFor(modelItem => meals.Minutes)     
+        </td>
+        </tr>                                           
+        }
+
+   @*     <table class="table">
+    <thead>
+        <tr>                    
+            <th>
+                Food               
+            </th>
+            <th>
+                Category              
+            </th>
+             <th>
+                 Action             
+            </th>           
+        </tr>
+    </thead>
+    <tbody>*@
+
+    <h4>Foods you ate today:</h4>
+    <ul>
+    @foreach (var item in Model.Refeicao)
+    {
+
+        @foreach (var b in item.AlimentoRefeicao)
+        {   
+            <li><span>@Html.DisplayFor(modelItem => b.Alimentos.Name)</span></li> 
+            
+           @* @foreach ( var a in b.AlimentoId)
+            {
+                    
+            }*@
+        }
+     }
+    </ul>
+
+   
+    <h5>idRefeicao</h5>
+    @foreach (var std in ViewData["idRef"] as int[])
+    {
+        <li>
+        @std
+        </li>
+    }
+    <h5>idAlimento</h5>
+    @foreach (var std in ViewData["idAli"] as int[])
+    {
+        <li>
+        @std
+        </li>
+    }
+    <h5>idAcoes</h5>
+    @foreach (var std in ViewData["idAction"] as int[])
+    {
+        <li>
+        @std
+        </li>
+    }
+    <h5>Name Actions</h5>
+    @foreach ( var s in ViewData["nameAction"] as string[])
+    {
+        <li>@s</li>
+    }
+
+    <h5>Missing Actions</h5>
+    @foreach ( var s in ViewData["missingAction"] as string[])
+    {
+        <li>@s</li>
+    }
+
+
+
+
+
+
+           @*     <form method="post">
+                Start date: <input type="dateTime" name="horaInicio" />
+                End date: <input type="datetime" name="horaFim"/>
+                <input type="submit" value="Submit" />
+                <a asp-page="Index"> get all records:</a>
+                <table class="table">
+                    <tr>
+                        <th>nome</th>
+                        <th>start date</th>
+                        <th>end date</th>
+                    </tr>
+
+                   
+                </table>
+
+            </form>
+
+                                             @foreach (var item in Model.results)
+                        {
+                    <tr>
+                        <td>@item.NomeRefeição</td>
+                        <td>@item.HoraInicio</td>
+                        <td>@item.HoraFim</td>
+                    
+
+                    </tr>
+                        }*@

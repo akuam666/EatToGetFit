@@ -13,23 +13,37 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Refeicao.NomeRefeição)
+            Name
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Refeicao.NomeRefeição)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Refeicao.RefeicaoData)
+            Start
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Refeicao.RefeicaoData)
+            @Html.DisplayFor(model => model.Refeicao.HoraInicio)
         </dd>
+        
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Refeicao.User)
+            End
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Refeicao.User.Id)
+            @Html.DisplayFor(model => model.Refeicao.HoraFim)
         </dd>
+          <dt class="col-sm-2">
+            Food
+        </dt>
+       <dd class="col-sm-10">
+             @{
+                        string actions = "";
+                        actions = string.Join(", ", Model.Refeicao.AlimentoRefeicao.Select(m => m.Alimentos.Name));
+                        <span>@actions</span>
+                    }
+        </dd>
+
+
+
     </dl>
     
     <form method="post">

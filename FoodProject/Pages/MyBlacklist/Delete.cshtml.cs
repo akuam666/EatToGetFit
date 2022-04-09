@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FoodProject.Data;
 using FoodProject.Data.Ententies;
 
-namespace FoodProject.Pages.MyRefeicoes
+namespace FoodProject.Pages.MyBlacklist
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace FoodProject.Pages.MyRefeicoes
         }
 
         [BindProperty]
-        public Refeicao Refeicao { get; set; }
+        public Blacklist Blacklist { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,13 +29,11 @@ namespace FoodProject.Pages.MyRefeicoes
                 return NotFound();
             }
 
-            Refeicao = await _context.Refeicaos
-                .Include(r => r.User)
-                .Include(m => m.AlimentoRefeicao)
-                .ThenInclude(r => r.Alimentos)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Blacklist = await _context.Blacklist
+                .Include(b => b.Alimentos)
+                .Include(b => b.User).FirstOrDefaultAsync(m => m.id == id);
 
-            if (Refeicao == null)
+            if (Blacklist == null)
             {
                 return NotFound();
             }
@@ -49,11 +47,11 @@ namespace FoodProject.Pages.MyRefeicoes
                 return NotFound();
             }
 
-            Refeicao = await _context.Refeicaos.FindAsync(id);
+            Blacklist = await _context.Blacklist.FindAsync(id);
 
-            if (Refeicao != null)
+            if (Blacklist != null)
             {
-                _context.Refeicaos.Remove(Refeicao);
+                _context.Blacklist.Remove(Blacklist);
                 await _context.SaveChangesAsync();
             }
 

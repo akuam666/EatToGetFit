@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FoodProject.Migrations
 {
-    public partial class jhsfd : Migration
+    public partial class hdf : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -186,8 +186,9 @@ namespace FoodProject.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeRefeição = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RefeicaoData = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    NomeRefeição = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HoraInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HoraFim = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -276,7 +277,7 @@ namespace FoodProject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AlimentoId = table.Column<int>(type: "int", nullable: false),
                     RefeicaoId = table.Column<int>(type: "int", nullable: false),
-                    Gramas = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Gramas = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -295,15 +296,30 @@ namespace FoodProject.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Acao",
-                columns: new[] { "Id", "NomeAcao" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "Favoritos",
+                columns: table => new
                 {
-                    { 1, "Ossos" },
-                    { 2, "Coraçao" },
-                    { 3, "Flexibility" },
-                    { 4, "Innovation" }
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AlimentoId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    DiaFavoritos = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Favoritos", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Favoritos_Alimentos_AlimentoId",
+                        column: x => x.AlimentoId,
+                        principalTable: "Alimentos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Favoritos_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -371,6 +387,16 @@ namespace FoodProject.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Favoritos_AlimentoId",
+                table: "Favoritos",
+                column: "AlimentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Favoritos_UserId",
+                table: "Favoritos",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Refeicaos_UserId",
                 table: "Refeicaos",
                 column: "UserId");
@@ -403,10 +429,10 @@ namespace FoodProject.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Acao");
+                name: "Favoritos");
 
             migrationBuilder.DropTable(
-                name: "Alimentos");
+                name: "Acao");
 
             migrationBuilder.DropTable(
                 name: "Refeicaos");
@@ -415,10 +441,13 @@ namespace FoodProject.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
+                name: "Alimentos");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categorias");
         }
     }
 }

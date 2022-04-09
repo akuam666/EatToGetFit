@@ -10,7 +10,7 @@ using FoodProject.Data.Ententies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-namespace FoodProject.Pages.MyFavoritos
+namespace FoodProject.Pages.MyBlacklist
 {
     [Authorize]
     public class CreateModel : PageModel
@@ -26,36 +26,29 @@ namespace FoodProject.Pages.MyFavoritos
 
         public IActionResult OnGet()
         {
-        ViewData["AlimentoId"] = new MultiSelectList(_context.Alimentos, "Id", "Name");
+        ViewData["AlimentoId"] = new SelectList(_context.Alimentos, "Id", "Name");
         
             return Page();
         }
 
         [BindProperty]
-        public Favoritos Favoritos { get; set; }
+        public Blacklist Blacklist { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             var userId = _userManager.GetUserId(User);
-            Favoritos.UserId = userId;
-
+            Blacklist.UserId = userId;
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Favoritos.Add(Favoritos);
+            _context.Blacklist.Add(Blacklist);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-
-
-
-
-
-         
         }
     }
 }

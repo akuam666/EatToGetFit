@@ -1,5 +1,6 @@
 ﻿using FoodProject.Data.Enteties;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodProject.Data.Ententies
 {
@@ -15,5 +16,15 @@ namespace FoodProject.Data.Ententies
 
         public string UserId { get; set; }
         public IdentityUser User { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Added at")]
+        public DateTime DiaFavoritos { get; set; }
+
+
+
+
     }
 }

@@ -10,7 +10,7 @@ using FoodProject.Data.Ententies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-namespace FoodProject.Pages.MyRefeicoes
+namespace FoodProject.Pages.MyBlacklist
 {
     [Authorize]
     public class IndexModel : PageModel
@@ -24,18 +24,14 @@ namespace FoodProject.Pages.MyRefeicoes
             _userManager = userManager;
         }
 
-        public IList<Refeicao> Refeicao { get;set; }
+        public IList<Blacklist> Blacklist { get;set; }
 
         public async Task OnGetAsync()
         {
-            Refeicao = await _context.Refeicaos
-               .Where(u => u.User.Id == _userManager.GetUserId(User))
-               .Include(c => c.User)          
-               .Include(c => c.AlimentoRefeicao)
-               .ThenInclude(a => a.Alimentos)
-               .ToListAsync();
-
-
+            Blacklist = await _context.Blacklist
+                .Where(u => u.User.Id == _userManager.GetUserId(User)).Include(c => c.User)
+                .Include(b => b.Alimentos)
+                .Include(b => b.User).ToListAsync();
         }
     }
 }

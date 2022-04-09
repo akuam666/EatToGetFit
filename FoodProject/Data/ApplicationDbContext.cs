@@ -1,12 +1,14 @@
-﻿using FoodProject.Data.Ententies;
+﻿using FluentAssertions.Common;
+using FoodProject.Data.Ententies;
 using FoodProject.Data.Enteties;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace FoodProject.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
 
         public DbSet<Alimento> Alimentos { get; set; }
@@ -16,52 +18,93 @@ namespace FoodProject.Data
 
         public DbSet<Refeicao> Refeicaos { get; set; }
 
+        public DbSet<Blacklist> Blacklist { get; set; }
+        public DbSet<Acao> Acaos { get; set; }
+
+        public DbSet<Favoritos> Favoritos { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<FoodProject.Data.Ententies.Acao> Acaos { get; set; }
 
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AlimentoAcao>().HasKey(ES => new { ES.AlimentoId, ES.AcaoId });
-            //modelBuilder.Entity<AlimentoRefeicao>().HasKey(ES => new { ES.AlimentoId, ES.RefeicaoId });
+           
 
             modelBuilder.Entity<Acao>().ToTable(nameof(Acao))
               .HasMany(c => c.Alimentos)
-               .WithMany(i => i.Acaos);
-
-
-
-            modelBuilder.Entity<Acao>().HasData(
-            new Acao { Id = 1, NomeAcao = "Ossos" },
-            new Acao { Id = 2, NomeAcao = "Coraçao" },
-            new Acao { Id = 3, NomeAcao = "Flexibility" },
-            new Acao { Id = 4, NomeAcao = "Innovation" }
-
-            );
-
-
-
-
-            //protected override void OnModelCreating(ModelBuilder modelBuilder)
-            //{
-            //    modelBuilder.Entity<Alimento>().ToTable(nameof(Alimento))
-            //      .HasMany(c => c.Acao)
-            //        .WithMany(i => i.Alimento);
-
-
-            //}
+               .WithMany(i => i.Acaos);         
 
         }
 
 
-        public DbSet<FoodProject.Data.Ententies.Favoritos> Favoritos { get; set; }
+        public void ImportFile()
+        {
+            string path = @"C:\Users\Bernardo\Downloads\123.csv";
+
+            string[] lines = File.ReadAllLines(path);
+
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string[] columns = lines[i].Split(',');
+
+                if (Alimentos.Any(x => x.Name.Equals(columns[0])))
+                {
+                    continue;
+                }
+
+                Categoria category;
+                Acao action;
+
+                var categoryName = columns[1];
+
+                if (!Categorias.Any(x => x.NomeCategoria.Equals(categoryName)))
+                {
+                    category = new Categoria() { NomeCategoria = categoryName };
+                }
+                else
+                {
+                    category = Categorias.FirstOrDefault(x => x.NomeCategoria.Equals(categoryName));
+                }
+
+                var food = new Alimento() { Name = columns[0], Categoria = category };
+
+                Alimentos.Add(food);
+                SaveChanges();
+
+                var actionsNames = columns[2].Trim().Split('-');
+
+                foreach (var actionName in actionsNames)
+                {
+                    if (!Acaos.Any(x => x.NomeAcao.Equals(actionName)))
+                    {
+                        action = new Acao() { NomeAcao = actionName };
+                        Acaos.Add(action);
+                        
+                    }
+                    else
+                    {
+                        action = Acaos.FirstOrDefault(x => x.NomeAcao.Equals(actionName));
+                    }
+
+                    var actionFood = new AlimentoAcao() { Acaos = action, Alimentos = food, AcaoId = action.Id, AlimentoId = food.Id };
+                    AlimentoAcaos.Add(actionFood);
+                }
+                    SaveChanges();
+            }
+        }
+
+
+           
+      }
+
+
 
 
     }
-}

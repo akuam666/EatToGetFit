@@ -1,0 +1,50 @@
+﻿@page
+@using FoodProject.Data.Enteties
+@model FoodProject.Pages.Admin.AdminModel
+
+
+
+
+
+<h1>Admin Zone</h1>
+
+
+
+        <h5> Upload .csv file</h5>
+                <form method="post">
+                    <button class="btn btn-primary" type="submit" asp-page-handler="ImportFile">Upload File</button>
+                </form>
+        
+
+
+            <h5>Total meals</h5>
+            <p>
+                 @ViewData["Max"]
+            </p>
+            <h5>Total resgisted Users</h5>
+
+             <p>
+                 @ViewData["Table"]
+            </p>
+            <h5>Most common Foods</h5>      
+           <p>
+            @foreach (var std in ViewData["students"] as IQueryable<Alimento>)
+            {
+                <li>
+                @std.Name
+                </li>
+}
+            </p>
+             <h5>Top 5 active Users </h5>
+            <p>
+            @foreach (var std in ViewData["def"] as IQueryable<IdentityUser>)
+            {
+                <li>
+                @std.Email
+                </li>
+            }
+            </p>
+
+           
+           
+  

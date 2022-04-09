@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220328113430_favs")]
-    partial class favs
+    [Migration("20220406144716_poifg")]
+    partial class poifg
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,28 +53,6 @@ namespace FoodProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Acao", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            NomeAcao = "Ossos"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            NomeAcao = "Coraçao"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            NomeAcao = "Flexibility"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            NomeAcao = "Innovation"
-                        });
                 });
 
             modelBuilder.Entity("FoodProject.Data.Ententies.AlimentoRefeicao", b =>
@@ -88,8 +66,8 @@ namespace FoodProject.Migrations
                     b.Property<int>("AlimentoId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Gramas")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Gramas")
+                        .HasColumnType("int");
 
                     b.Property<int>("RefeicaoId")
                         .HasColumnType("int");
@@ -101,6 +79,32 @@ namespace FoodProject.Migrations
                     b.HasIndex("RefeicaoId");
 
                     b.ToTable("AlimentoRefeicaos");
+                });
+
+            modelBuilder.Entity("FoodProject.Data.Ententies.Blacklist", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<int>("AlimentoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DiaBlacklist")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("AlimentoId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Blacklist");
                 });
 
             modelBuilder.Entity("FoodProject.Data.Ententies.Categoria", b =>
@@ -130,6 +134,9 @@ namespace FoodProject.Migrations
                     b.Property<int>("AlimentoId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DiaFavoritos")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -150,11 +157,15 @@ namespace FoodProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("NomeRefeição")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RefeicaoData")
+                    b.Property<DateTime>("HoraFim")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("HoraInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NomeRefeição")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -436,6 +447,23 @@ namespace FoodProject.Migrations
                     b.Navigation("Alimentos");
 
                     b.Navigation("Refeicaos");
+                });
+
+            modelBuilder.Entity("FoodProject.Data.Ententies.Blacklist", b =>
+                {
+                    b.HasOne("FoodProject.Data.Enteties.Alimento", "Alimentos")
+                        .WithMany()
+                        .HasForeignKey("AlimentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Alimentos");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FoodProject.Data.Ententies.Favoritos", b =>

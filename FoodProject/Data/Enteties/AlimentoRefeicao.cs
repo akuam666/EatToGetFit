@@ -10,7 +10,7 @@ namespace FoodProject.Data.Ententies
 
         public int RefeicaoId { get; set; }
         public Refeicao Refeicaos { get; set; }
-        public decimal Gramas { get; set; }
+        public int Gramas { get; set; }
 
 
 

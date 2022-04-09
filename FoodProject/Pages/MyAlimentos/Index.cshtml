@@ -5,81 +5,42 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Foods</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Add Food</a>
 </p>
 <table class="table">
     <thead>
         <tr>                    
             <th>
-                Nome
-               @* @Html.DisplayNameFor(model => model.AlimentoData[0].Name)*@
+                Food
+               
             </th>
             <th>
-                Categoria
-                @*@Html.DisplayNameFor(model => model.Alimento[0].Categoria)*@
+                Category
+              
             </th>
              <th>
-                 Ações
-                @*@Html.DisplayNameFor(model => model.Alimento[0].AlimentoAcaos)*@
+                 Action
+              
             </th>
-            <th>F*ck this sh*t!</th>
+            
         </tr>
     </thead>
     <tbody>
 
 
-
-@*@foreach (var item in Model.Alimento) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.NomeCategoria) 
-            </td>
-             <td>
-                    @{
-                        foreach (var course in item.Acaos)
-                        {
- 
-                           @course.Id @:  @course.NomeAcao <br />
-                        }
-                    }
-                </td>  
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}*@
-
-
     @foreach (var item in Model.Alimento)
         {
-           @* string selectedRow = "";
-            if (item.Id == Model.AlimentoID)
-            {
-                selectedRow = "table-success";
-            }*@
-           <tr @*class="@selectedRow"*@>
+          
+           <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)
-                </td>                            
-              @*  <td>
-                    @{
-                        foreach (var course in item.AlimentoAcaos)
-                        {
-                            @course. @:  @course.Acaos                      
-                        }
-                    }
-                </td>*@
+                </td>                                       
                 <td>
                     @{
                         string actions = "";
@@ -88,9 +49,8 @@
                     }
                 </td>
                 <td>
-                    <a asp-page="./Index" asp-route-id="@item.Id">Select</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                   
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |                    
                     <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
@@ -98,36 +58,3 @@
     </tbody>
 </table>
 
-@*@if (Model.AlimentoData.Acaos != null)
-{
-    <h3>Courses Taught by Selected Instructor</h3>
-    <table class="table">
-        <tr>
-            <th></th>
-            <th>Number</th>
-            <th>Title</th>
-            <th>Department</th>
-        </tr>
-
-        @foreach (var item in Model.AlimentoData.Acaos)
-        {
-            string selectedRow = "";
-            if (item.Id == Model.AcaoID)
-            {
-                selectedRow = "table-success";
-            }
-            <tr class="@selectedRow">
-                <td>
-                    <a asp-page="./Index" asp-route-courseID="@item.Id">Select</a>
-                </td>
-               
-                <td>
-                    @item.NomeAcao
-                </td>
-                
-            </tr>
-        }
-
-    </table>
-}
-*@

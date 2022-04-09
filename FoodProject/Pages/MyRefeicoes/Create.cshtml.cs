@@ -36,47 +36,49 @@ namespace FoodProject.Pages.MyRefeicoes
         [Display(Name = "Add a New Alimento")]
         public String NewAlimento { get; set; }
 
-        //public Refeicao Refeicao { get; set; }
+        public List<SelectListItem> Alimentos{ get; set; }
 
+
+
+        //public SelectList TagOptions { get; set; }
+
+        //    [BindProperty]
+        // public int[] SelectedTags { get; set; }
 
         public IActionResult OnGet()
         {
 
-            //var userId = _userManager.GetUserId(User);
-            //ViewData["UserId"] = new SelectList(_userManager.Users, "Id", "Email");
-        
-
-
-            //var refeicao = new Refeicao()
-            //{
-
-            //    UserId = userId
-
-            //};
-            //Refeicao = _context.Refeicaos
-            //   .Include(t => t.User);
-
-
-            AlimentoList = _context.Alimentos.ToList<Alimento>()
+            AlimentoList = _context.Alimentos           
+               .ToList<Alimento>()
                .Select(m => new SelectListItem { Text = m.Name, Value = m.Id.ToString() })
                .ToList<SelectListItem>();
 
-            return Page();
-
-
-           
+            return Page();          
         }
+
 
         [BindProperty]
         public Refeicao Refeicao { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+
+            var alimentos = (from alimento in _context.Alimentos
+                             select new SelectListItem
+                             {
+                                 Text = alimento.Name,
+                                 Value = alimento.Id.ToString()
+                             }).ToList();
+            Alimentos = alimentos;
+
+            //string[] alimentoIds = Request.Form["lstAlimentos"].ToString().Split(",");
+       
+
+
 
 
             var userId = _userManager.GetUserId(User);
@@ -92,16 +94,7 @@ namespace FoodProject.Pages.MyRefeicoes
                     AlimentoRefeicaos.Add(new AlimentoRefeicao { AlimentoId = Convert.ToInt32(acao.Value) });
                 }
             }
-            //checking if a new skills was added or not
-            if (!string.IsNullOrEmpty(NewAlimento))
-            {
-                //when a new skill is added, create a new skill instance and assign it to and EmployeeSkill entity. 
-                //It is then assigned to a collection of Employeeskills
-                Alimento alimento = new Alimento { Name = NewAlimento };
-                AlimentoRefeicao alimentoRefeicao = new AlimentoRefeicao { Alimentos = (alimento) };
-                AlimentoRefeicaos.Add(alimentoRefeicao);
-            }
-            //The collection of Employeeskills is assigned to the Employee entity and saved to the database
+           
             Refeicao.AlimentoRefeicao = AlimentoRefeicaos;
             _context.Refeicaos.Add(Refeicao);
             await _context.SaveChangesAsync();
@@ -111,10 +104,6 @@ namespace FoodProject.Pages.MyRefeicoes
 
 
 
-            //_context.Refeicaos.Add(Refeicao);
-            //await _context.SaveChangesAsync();
-
-            //return RedirectToPage("./Index");
         }
     }
 }
