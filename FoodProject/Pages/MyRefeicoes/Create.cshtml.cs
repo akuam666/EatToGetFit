@@ -31,19 +31,12 @@ namespace FoodProject.Pages.MyRefeicoes
 
         [BindProperty]
         public IList<SelectListItem> AlimentoList { get; set; }
-        [BindProperty]
-        [MaxLength(50)]
-        [Display(Name = "Add a New Alimento")]
-        public String NewAlimento { get; set; }
+
 
         public List<SelectListItem> Alimentos{ get; set; }
 
 
 
-        //public SelectList TagOptions { get; set; }
-
-        //    [BindProperty]
-        // public int[] SelectedTags { get; set; }
 
         public IActionResult OnGet()
         {
@@ -75,7 +68,6 @@ namespace FoodProject.Pages.MyRefeicoes
                              }).ToList();
             Alimentos = alimentos;
 
-            //string[] alimentoIds = Request.Form["lstAlimentos"].ToString().Split(",");
        
 
 

@@ -6,10 +6,10 @@
 }
 
 <h1>My Meals</h1>
-
+@*
 <p>
     <a asp-page="Create">Add meal</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -53,9 +53,9 @@
                     @foreach (var b in item.AlimentoRefeicao)
                     {
                      
-                        string valGramas = "";
-                        valGramas = string.Join(" ", b.Alimentos.Name.ToString());
-                        <span>@valGramas</span><br/>                            
+                        string alinames = "";
+                        alinames = string.Join(" ", b.Alimentos.Name.ToString());
+                        <span>@alinames</span><br/>                            
                     }
                 </td>          
                  <td>
@@ -73,6 +73,6 @@
                 </td>
             </tr>
         }
-}
+
     </tbody>
 </table>

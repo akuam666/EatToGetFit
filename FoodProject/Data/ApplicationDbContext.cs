@@ -46,15 +46,15 @@ namespace FoodProject.Data
 
         public void ImportFile()
         {
-            string path = @"C:\Users\Bernardo\Downloads\123.csv";
+            string path = @"C:\Users\Bernardo\source\repos\FoodProject\FoodProject\wwwroot\123.csv";
 
-            string[] lines = File.ReadAllLines(path);
+            string[] linhas = File.ReadAllLines(path);
 
-            for (int i = 1; i < lines.Length; i++)
+            for (int i = 1; i < linhas.Length; i++)
             {
-                string[] columns = lines[i].Split(',');
+                string[] colunas = linhas[i].Split(',');
 
-                if (Alimentos.Any(x => x.Name.Equals(columns[0])))
+                if (Alimentos.Any(x => x.Name.Equals(colunas[0])))
                 {
                     continue;
                 }
@@ -62,7 +62,7 @@ namespace FoodProject.Data
                 Categoria category;
                 Acao action;
 
-                var categoryName = columns[1];
+                var categoryName = colunas[1];
 
                 if (!Categorias.Any(x => x.NomeCategoria.Equals(categoryName)))
                 {
@@ -73,12 +73,12 @@ namespace FoodProject.Data
                     category = Categorias.FirstOrDefault(x => x.NomeCategoria.Equals(categoryName));
                 }
 
-                var food = new Alimento() { Name = columns[0], Categoria = category };
+                var food = new Alimento() { Name = colunas[0], Categoria = category };
 
                 Alimentos.Add(food);
                 SaveChanges();
 
-                var actionsNames = columns[2].Trim().Split('-');
+                var actionsNames = colunas[2].Trim().Split('-');
 
                 foreach (var actionName in actionsNames)
                 {

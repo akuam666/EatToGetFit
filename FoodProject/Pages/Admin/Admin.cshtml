@@ -17,18 +17,17 @@
         
 
 
-            <h5>Total meals</h5>
+            <h5>Total Meals</h5>
             <p>
-                 @ViewData["Max"]
+                 @ViewData["totalMeals"]
             </p>
             <h5>Total resgisted Users</h5>
-
              <p>
-                 @ViewData["Table"]
+                 @ViewData["totalUsers"]
             </p>
             <h5>Most common Foods</h5>      
            <p>
-            @foreach (var std in ViewData["students"] as IQueryable<Alimento>)
+            @foreach (var std in ViewData["commonFoods"] as IQueryable<Alimento>)
             {
                 <li>
                 @std.Name

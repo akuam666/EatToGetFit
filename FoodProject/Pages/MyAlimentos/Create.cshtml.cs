@@ -23,10 +23,7 @@ namespace FoodProject.Pages.MyAlimentos
 
         [BindProperty]
         public IList<SelectListItem> AcaoList { get; set; }
-        [BindProperty]
-        [MaxLength(50)]
-        [Display(Name = "Add a New Acao")]
-        public String NewAcao { get; set; }
+     
 
        
 
@@ -36,7 +33,7 @@ namespace FoodProject.Pages.MyAlimentos
             AcaoList = _context.Acaos.ToList<Acao>()
                .Select(m => new SelectListItem { Text = m.NomeAcao, Value = m.Id.ToString() })
                .ToList<SelectListItem>();
-            //return Page();
+            
 
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "NomeCategoria");
        
@@ -46,7 +43,7 @@ namespace FoodProject.Pages.MyAlimentos
         [BindProperty]
         public Alimento Alimento { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+     
         public async Task<IActionResult> OnPostAsync()
         {
 
@@ -64,24 +61,12 @@ namespace FoodProject.Pages.MyAlimentos
                     AlimentoAcaos.Add(new AlimentoAcao { AcaoId = Convert.ToInt32(acao.Value) });
                 }
             }
-            //checking if a new skills was added or not
-            if (!string.IsNullOrEmpty(NewAcao))
-            {
-                //when a new skill is added, create a new skill instance and assign it to and EmployeeSkill entity. 
-                //It is then assigned to a collection of Employeeskills
-                Acao acao = new Acao { NomeAcao = NewAcao };
-                AlimentoAcao alimentoAcao = new AlimentoAcao { Acaos = (acao )};
-                AlimentoAcaos.Add(alimentoAcao);
-            }
-            //The collection of Employeeskills is assigned to the Employee entity and saved to the database
+       
+          
             Alimento.AlimentoAcaos = AlimentoAcaos;
             _context.Alimentos.Add(Alimento);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
-
-
-
-
 
           
         }

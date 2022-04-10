@@ -52,27 +52,24 @@ namespace FoodProject.Pages.Admin
                 .Include(b => b.User)
                 .GroupBy(a => a.UserId)
                 .OrderByDescending(grp => grp.Count())
-                .Take(10)
+                .Take(5)
                 .Select(grp => grp.Key)
                 .ToList();
         
 
-            ViewData["Max"] = _context.Refeicaos
+            ViewData["totalMeals"] = _context.Refeicaos
                 .Count();
 
 
-            ViewData["table"] = _userManager.Users
+            ViewData["totalUsers"] = _userManager.Users
                 .Count();
             
-            ViewData["students"] = _context.Alimentos
+            ViewData["commonFoods"] = _context.Alimentos
                 .Where(u => abc.Contains(u.Id));
 
             ViewData["def"] = _userManager.Users
                 .Where(u => def.Contains(u.Id));
 
-
-            var ghi = _context.Refeicaos       
-               .ToList();
 
 
            
@@ -86,43 +83,40 @@ namespace FoodProject.Pages.Admin
 
 
             _context.ImportFile();
-          
-
 
 
             var abc = _context.AlimentoRefeicaos
-               .Include(a => a.Alimentos)
-               .GroupBy(product => product.AlimentoId)
-               .OrderByDescending(grp => grp.Count())
-               .Take(10)
-               .Select(grp => grp.Key)
-               .ToList();
-
-            var def = _context.Refeicaos
-                .Include(b => b.User)
-                .GroupBy(a => a.UserId)
+                .Include(a => a.Alimentos)
+                .GroupBy(product => product.AlimentoId)
                 .OrderByDescending(grp => grp.Count())
                 .Take(10)
                 .Select(grp => grp.Key)
                 .ToList();
 
+            var def = _context.Refeicaos
+                .Include(b => b.User)
+                .GroupBy(a => a.UserId)
+                .OrderByDescending(grp => grp.Count())
+                .Take(5)
+                .Select(grp => grp.Key)
+                .ToList();
 
-            ViewData["Max"] = _context.Refeicaos
-                .OrderByDescending(p => p.Id)
-                .FirstOrDefault().Id;
 
-            ViewData["table"] = _userManager.Users
+            ViewData["totalMeals"] = _context.Refeicaos
                 .Count();
 
-            ViewData["students"] = _context.Alimentos
+
+            ViewData["totalUsers"] = _userManager.Users
+                .Count();
+
+            ViewData["commonFoods"] = _context.Alimentos
                 .Where(u => abc.Contains(u.Id));
 
             ViewData["def"] = _userManager.Users
                 .Where(u => def.Contains(u.Id));
 
 
-            var ghi = _context.Refeicaos             
-               .ToList();
+
 
         }
     }
