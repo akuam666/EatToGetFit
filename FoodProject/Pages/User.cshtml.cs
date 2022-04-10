@@ -27,12 +27,11 @@ namespace FoodProject.Pages
 
      
         public List<TimeSpan> fast { get; set; } = new List<TimeSpan>();
-        
-
-        public IEnumerable<Refeicao> results { get; set; }
+ 
 
         public IList<Refeicao> Refeicao { get; set; }
         public IList<Alimento> alimento { get; set; }
+        
 
 
 
@@ -75,43 +74,67 @@ namespace FoodProject.Pages
                 .Select(a => a.NomeAcao).ToArray();
             ViewData["missingAction"] = missingAction;
 
+            int[] missingActionId = _context.Acaos
+                .Where(c => !idAction.Contains(c.Id))
+                .Select(a => a.Id).ToArray();
+            ViewData["missingActionId"] = missingActionId;
+
+            int[] missingAliId = _context.AlimentoAcaos
+                .Where(c => missingActionId.Contains(c.AcaoId))
+                .Select(a => a.AlimentoId)
+                .Distinct().ToArray();
+            ViewData["missingAliId"] = missingAliId;
+
+            //filter with blackList
+            int[] excludeBlackListAli = _context.Blacklist
+                .Where(a => !missingAliId.Contains(a.AlimentoId) && a.User.Id == _userManager.GetUserId(User))
+                .Select(a => a.AlimentoId)
+                .Take(6)
+                .ToArray();
+            ViewData["excludeBlackListAli"] = excludeBlackListAli;
+
+            // filter by fav
+            int[] getFavouriteListAli = _context.Favoritos
+               .Where(a => excludeBlackListAli.Contains(a.AlimentoId) && a.User.Id == _userManager.GetUserId(User))
+               .Select(a => a.AlimentoId)
+               .ToArray();
+            ViewData["getFavouriteListAli"] = getFavouriteListAli;
+
+            //get sugestions names of alis 
+            string[] getSugestionAli = _context.Alimentos
+                .Where(a => missingAliId.Contains(a.Id))
+                .Select(a => a.Name)
+                .Take(6)
+                .ToArray();
+            ViewData["getSugestionAli"] = getSugestionAli;
+
+            //get sugestions names of alis  by id
+            int[] getSugestionAliId = _context.Alimentos
+                .Where(a => getFavouriteListAli.Contains(a.Id))
+                .Select(a => a.Id)
+                .ToArray();
+            ViewData["getSugestionAliId"] = getSugestionAliId;
+
+            string[] getSugestionAliWithoutFav = _context.Alimentos
+               .Where(a => getFavouriteListAli.Contains(a.Id) && !getSugestionAliId.Contains(a.Id))
+               .Select(a => a.Name)
+               .ToArray();
+            ViewData["getSugestionAliWithoutFav"] = getSugestionAliWithoutFav;
 
 
 
-
-
-
-            //foreach (var a in ali)
-            //{
-            //    foreach (var r in Refeicao)
-            //    {
-            //        if(r.AlimentoRefeicao. == )
-            //    }
-
-            //    //Refeicao.Where(r => r. .GetId() == a.id).First();
-
-            //}
-
-
-
-
-
-
-
-
-            //results = _context.Refeicaos.ToList();
 
 
             var mealExists = _context.Refeicaos
-                .Where(u => u.User.Id == _userManager.GetUserId(User))
-                .Any(x => x.Id >= 1);
+                .Where(a => a.User.Id == _userManager.GetUserId(User))
+                .Any(b => b.Id >= 1);
 
 
             if (mealExists)
             {
                 var x = _context.Refeicaos
-                    .Where(u => u.User.Id == _userManager.GetUserId(User))
-                    .OrderBy(x => x.HoraInicio)
+                    .Where(a => a.User.Id == _userManager.GetUserId(User))
+                    .OrderBy(b => b.HoraInicio)
                     .Last();
 
 
@@ -127,16 +150,6 @@ namespace FoodProject.Pages
 
                 
             }
-           
-        }
-
-
-        public void OnPost(DateTime? horaInicio, DateTime? horaFim)
-        {
-
-        results = (from x in _context.Refeicaos where(x.HoraInicio <= horaInicio) && (x.HoraFim >= horaFim) select x).ToList();
-
-
         }
     }
 }

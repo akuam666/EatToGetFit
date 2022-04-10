@@ -4,17 +4,17 @@
 }
 
 
-            <h5>Current Fasting (HH:MM):</h5>
-            <p>
+<h5>Current Fasting (HH:MM):</h5>
+            
                 
-        @foreach (var meals in Model.fast)
-        {
+    @foreach (var time in Model.fast)
+    {
         <tr>
-        <td>
-        @Html.DisplayFor(modelItem => meals.Hours):@Html.DisplayFor(modelItem => meals.Minutes)     
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => time.Hours):@Html.DisplayFor(modelItem => time.Minutes)     
+            </td>
         </tr>                                           
-        }
+    }
 
 
 
@@ -65,3 +65,22 @@
     {
         <li>@s</li>
     }
+
+    <h5>Today's Suggested foods</h5>
+    @foreach ( var s in ViewData["getSugestionAli"] as string[])
+    {
+        <li>@s</li>
+    }
+
+
+    @*@if(Model.getSugestionAli.Count == 0){
+         @foreach ( var s in ViewData["getSugestionAliWithoutFav"] as int[])
+        {
+            <li>@s</li>
+        }
+    }else{
+        @foreach ( var s in ViewData["getSugestionAli"] as int[])
+        {
+            <li>@s</li>
+        }
+    }*@

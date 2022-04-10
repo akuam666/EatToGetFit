@@ -10,6 +10,8 @@ using System.Collections.Generic;
 
 namespace FoodProject.Pages.Admin
 {
+
+    
     public class AdminModel : PageModel
     {
         private readonly FoodProject.Data.ApplicationDbContext _context;
